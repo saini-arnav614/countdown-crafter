@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Countdown Crafter</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="sidebar">
+    <h2>Presets</h2>
+    <button class="preset-btn" data-label="New Year's Eve" data-date="2025-12-31T23:59" data-bg="#1a1a2e" data-font="#ffffff">New Year's Eve</button>
+    <button class="preset-btn" data-label="Christmas" data-date="2025-12-25T00:00" data-bg="#af1f1f" data-font="#ffffff">Christmas</button>
+  </div>
+  <div class="container">
+    <h1>Countdown Crafter</h1>
+    <form id="countdown-form" autocomplete="off">
+      <div class="input-group">
+        <label for="label-input">Countdown Label:</label>
+        <input type="text" id="label-input" placeholder="Event name (optional)">
+      </div>
+      <div class="input-group">
+        <label for="target-date">Select target date and time:</label>
+        <input type="datetime-local" id="target-date">
+      </div>
+      <div class="input-group">
+        <label>Background Type:</label>
+        <div class="toggle-group">
+          <input type="radio" id="bg-color-toggle" name="bg-type" value="color" checked>
+          <label for="bg-color-toggle">Color</label>
+          <input type="radio" id="bg-image-toggle" name="bg-type" value="image">
+          <label for="bg-image-toggle">Image</label>
+        </div>
+      </div>
+      <div class="input-group" id="bg-color-group">
+        <label for="bg-color-input">Background Color:</label>
+        <input type="color" id="bg-color-input" value="#232526">
+      </div>
+      <div class="input-group" id="bg-image-group" style="display: none;">
+        <label for="bg-image-input">Background Image:</label>
+        <input type="file" id="bg-image-input" accept="image/*">
+      </div>
+      <div class="input-group">
+        <label for="font-color-input">Font Color:</label>
+        <input type="color" id="font-color-input" value="#ffffff">
+      </div>
+      <div class="input-group">
+        <label for="style-select">Display Style:</label>
+        <select id="style-select">
+          <option value="normal">Normal</option>
+          <option value="flip">Flip Book</option>
+          <option value="fade">Fade</option>
+          <option value="slide">Slide</option>
+        </select>
+      </div>
+      <button type="button" id="start-btn">Start Countdown</button>
+    </form>
+    <div id="countdown-label"></div>
+    <div id="countdown-display"></div>
+  </div>
+  <script src="main.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+</body>
+</html>
