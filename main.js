@@ -70,6 +70,7 @@ bgImageInput.addEventListener('change', function(e) {
 
 bgColorInput.addEventListener('input', applyCustomColors);
 fontColorInput.addEventListener('input', applyCustomColors);
+
 if (sidebar) {
   sidebar.querySelectorAll('.preset-btn').forEach(btn => {
     btn.addEventListener('click', () => {
