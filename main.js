@@ -14,6 +14,7 @@ const bgImageInput = document.getElementById('bg-image-input');
 let countdownInterval;
 let currentBgImage = null;
 
+// Formats all time
 function formatTime(ms) {
   if (ms < 0) ms = 0;
   const totalSeconds = Math.floor(ms / 1000);
@@ -24,6 +25,7 @@ function formatTime(ms) {
   return `${days}d ${hours}h ${minutes}m ${seconds}s`;
 }
 
+// Applys styles to countdown
 function applyCustomColors() {
   const isColorMode = document.getElementById('bg-color-toggle').checked;
   if (isColorMode) {
@@ -45,10 +47,7 @@ function applyCustomColors() {
   countdownDisplay.style.color = fontColorInput.value;
 }
 
-bgTypeRadios.forEach(radio => {
-  radio.addEventListener('change', handleBackgroundTypeChange);
-});
-
+// Switches between color and image background
 function handleBackgroundTypeChange(e) {
   const isColor = e.target.value === 'color';
   bgColorGroup.style.display = isColor ? 'flex' : 'none';
@@ -56,6 +55,7 @@ function handleBackgroundTypeChange(e) {
   applyCustomColors();
 }
 
+// Loads image for background
 bgImageInput.addEventListener('change', function(e) {
   const file = e.target.files[0];
   if (file) {
@@ -68,9 +68,11 @@ bgImageInput.addEventListener('change', function(e) {
   }
 });
 
+// Updates style when color changes
 bgColorInput.addEventListener('input', applyCustomColors);
 fontColorInput.addEventListener('input', applyCustomColors);
 
+// Sets values from preset button
 if (sidebar) {
   sidebar.querySelectorAll('.preset-btn').forEach(btn => {
     btn.addEventListener('click', () => {
@@ -88,6 +90,7 @@ if (sidebar) {
   });
 }
 
+// Starts the countdown timer
 function startCountdown() {
   const target = new Date(targetDateInput.value);
   if (isNaN(target.getTime())) {
@@ -95,6 +98,7 @@ function startCountdown() {
     return;
   }
   
+  // Goes fullscreen
   if (document.documentElement.requestFullscreen) {
     document.documentElement.requestFullscreen();
   }
@@ -105,6 +109,8 @@ function startCountdown() {
   applyCustomColors();
 
   clearInterval(countdownInterval);
+
+  // Updates time left every second
   function update() {
     const now = new Date();
     const diff = target - now;
@@ -114,10 +120,16 @@ function startCountdown() {
       countdownDisplay.textContent = "Time's up!";
     }
   }
+
   update();
   countdownInterval = setInterval(update, 1000);
 }
 
+// Prevents form submit refresh
 form.addEventListener('submit', e => e.preventDefault());
+
+// Triggers countdown
 startBtn.addEventListener('click', startCountdown);
+
+// Setup initial styles
 applyCustomColors();
